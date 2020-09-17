@@ -60,8 +60,8 @@ app.get('',(req,res)=>{
 app.get('*',(req,res)=>{
 
     res.render('error',{
-    errormssg:'error not found',
-    title:"hi ahmed"
+    errormssg:'page not found',
+    name:'ahmed mostafa'
     
     })
     
