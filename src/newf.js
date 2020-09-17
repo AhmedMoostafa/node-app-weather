@@ -7,7 +7,7 @@ const box=document.querySelector('#data')
 e.preventDefault();
 //console.log(location); 
       box.textContent='loading....';
-               fetch('http://localhost:3000/weather?location='+location).then((res)=>{
+               fetch('/weather?location='+location).then((res)=>{
 
               res.json().then((data)=>{
                 if(data.error)
