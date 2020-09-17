@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <link rel="stylesheet" href="/css/style.css">
+      <link rel="icon" href="/img/download.jpg">
+      
+    <title>wather</title>
+   
+    </head>
+    <body>
+      <div>
+          {{>header}}
+          <h1 > {{title}}</h1>
+          
+      </div>
+
+
+<div id="ss">
+  <form>
+
+     <input placeholder="location" id="in">
+     <button>search</button>
+
+  </form>
+  <br>
+  <br>
+
+  <span style='font-weight: bold'>temperature is: </span>
+  <span id='data' style="color: indigo;"> </span>
+
+</div>
+      
+
+
+
+{{>footer}}
+    <script src='./newf.js'></script> 
+      
+    </body>
+
+</html>
