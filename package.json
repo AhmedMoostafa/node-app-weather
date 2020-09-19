@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/ap.js"
+    "start": "node src/ap.js",
+    "dev": " nodemon src/ap.js -e js,hbs,html"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +15,8 @@
     "hbs": "^4.0.1",
     "request": "^2.88.2",
     "require": "^2.4.20"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }

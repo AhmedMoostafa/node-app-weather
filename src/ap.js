@@ -38,7 +38,9 @@ app.get('/weather',(req,res)=>{
             }
             else
             {
+            
               res.send({
+                  
                 data:data
             });
         
