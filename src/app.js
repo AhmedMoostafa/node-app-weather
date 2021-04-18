@@ -1,63 +1,51 @@
-/* const express=require('express');
-const re=require('https');
-console.log(express); */
+const express = require("express");
+const path = require("path");
+const hbs = require("hbs");
+const app = express();
+const getData = require("./getData");
 
-const express=require('express');
-const path=require('path')
-const hbs=require('hbs');
-const app=express();
+const pathd = path.join(__dirname, "../public");
+const pathd2 = path.join(__dirname, "../src");
+const viewsPath = path.join(__dirname, "../templates/views");
+const partialsPath = path.join(__dirname, "../templates/partials");
 
+app.use(express.static(pathd));
+app.use(express.static(pathd2));
 
- const pathd=path.join(__dirname,'../public')
- const viewsPath=path.join(__dirname,'../templates/views');
- const partialsPath=path.join(__dirname,'../templates/partials');
- app.use(express.static(pathd));
- app.set('view engine','hbs');
- app.set('views',viewsPath);
- hbs.registerPartials(partialsPath);
-   app.get('/index',(req,res)=>{
+app.set("view engine", "hbs");
+//hbs file
+app.set("views", viewsPath);
+//partials
+hbs.registerPartials(partialsPath);
 
-        res.render('index',{
-          title:'hi from index!!!',
-          name:'ahmed mostafa'
-
-        })
-    }
- )  
-
- app.get('/help',(req,res)=>{
-
-  res.render('help',{
-    title:'hi from help',
-    name:'ahmed mostafa'
-
-  })
-}
-)  
-app.get('/query',(req,res)=>{
-
-if(!req.query.name){
- res.send('please send name ')
-}
-else
-{
-  res.send(req.query.name);
-} 
-  
-})
-
-
-//node ../web-server/src/app.js
-app.get('*',(req,res)=>{
-
-res.render('error',{
-errormssg:'error not found',
-title:"hi ahmed"
-
-})
-
-})   
-app.listen(3000,()=>{
-
-    console.log('connect on port:3000')
-})
+const port = process.env.PORT || 3000;
+app.get("/weather", (req, res) => {
+  if (!req.query.location) {
+    res.send({ error: "empty" });
+  } else {
+    getData(req.query.location, (error, data) => {
+      if (error) {
+        res.send({ error });
+      } else {
+        res.send({
+          data: data,
+        });
+      }
+    });
+  }
+});
+app.get("", (req, res) => {
+  res.render("index", {
+    title: "Enter your city name",
+    name: "ahmed mostafa",
+  });
+});
+app.get("*", (req, res) => {
+  res.render("error", {
+    errormssg: "page not found",
+    name: "ahmed mostafa",
+  });
+});
+app.listen(port, () => {
+  console.log("connect on port:" + port);
+});
